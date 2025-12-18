@@ -43,6 +43,10 @@ const FaceAnalyzer = () => {
     const predictWebcam = () => {
         if (landmarkerRef.current && webcamRef.current?.video?.readyState === 4 && canvasRef.current && containerRef.current) {
             const video = webcamRef.current.video;
+            if (video.videoWidth === 0 || video.videoHeight === 0) {
+                requestRef.current = requestAnimationFrame(predictWebcam);
+                return;
+            }
             const canvas = canvasRef.current;
             const ctx = canvas.getContext('2d');
             const container = containerRef.current;
@@ -138,9 +142,7 @@ const FaceAnalyzer = () => {
                 />
             </div>
 
-            {/* Scanline Overlay */}
-            <div className={styles.scanlineOverlay}></div>
-            <div className={styles.scanningLine}></div>
+            {/* Scanline Overlay Removed */}
 
             {/* HUD Layer */}
             <div className={styles.hudLayer}>

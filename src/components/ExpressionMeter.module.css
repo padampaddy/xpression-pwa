@@ -80,9 +80,7 @@
     color: rgba(255, 255, 255, 0.1);
 }
 
-.indicator {
-    transition: stroke-dashoffset 0.3s ease-out;
-}
+
 
 .iconContainer {
     position: absolute;
