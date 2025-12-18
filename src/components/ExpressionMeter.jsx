@@ -78,14 +78,17 @@ const ExpressionMeter = ({ blendshapes }) => {
         // Using weighted combinations of blendshapes for more robust detection
         const emotions = {
             joy: s.smile,
-            sad: (s.mouthFrown + s.browInnerUp * 0.5) / 1.5,
+            sad: (s.mouthFrown * 1.5 + s.browInnerUp * 0.8) / 2.3,
             rage: (s.browDown + s.jawOpen * 0.2 + s.eyeSquint * 0.3) / 1.5,
             shock: (s.browRaise + s.eyeWide + s.jawOpen) / 3,
             fear: (s.browInnerUp + s.eyeWide + s.mouthFrown * 0.5) / 2.5,
             disgust: (s.noseSneer + s.browDown * 0.5 + s.eyeSquint * 0.2) / 1.7,
-            sus: (s.eyeSquint + s.browDown * 0.3) / 1.3,
-            kiss: s.mouthPucker,
+            puff: s.cheekPuff * 1.4,
+            kiss: s.mouthPucker * 0.7,
         };
+
+        // Logic: Puff suppresses Kiss (puffing often looks like pucker)
+        if (emotions.puff > 0.3) emotions.kiss = 0;
 
         // Find Dominant Emotion
         let maxScore = 0;
@@ -110,7 +113,7 @@ const ExpressionMeter = ({ blendshapes }) => {
             shock: { label: 'Shocked', emoji: '😱', color: '#f59e0b', icon: <Zap /> },
             fear: { label: 'Fear', emoji: '😨', color: '#7c3aed', icon: <Ghost /> },
             disgust: { label: 'Disgusted', emoji: '🤢', color: '#84cc16', icon: <Annoyed /> },
-            sus: { label: 'Suspicious', emoji: '🤨', color: '#d97706', icon: <Search /> },
+            puff: { label: 'Puff', emoji: '🐡', color: '#d97706', icon: <Wind /> },
             kiss: { label: 'Kissing', emoji: '😘', color: '#f43f5e', icon: <Heart /> },
         };
 
@@ -136,7 +139,7 @@ const ExpressionMeter = ({ blendshapes }) => {
         { label: 'Shock', val: emotions.shock, color: '#f59e0b', icon: <Zap />, instruction: "Raise brows high and open mouth!" },
         { label: 'Fear', val: emotions.fear, color: '#7c3aed', icon: <Ghost />, instruction: "Raise eyebrows and widen your eyes." },
         { label: 'Disgust', val: emotions.disgust, color: '#84cc16', icon: <Annoyed />, instruction: "Wrinkle your nose and raise upper lip." },
-        { label: 'Sus', val: emotions.sus, color: '#d97706', icon: <Search />, instruction: "Squint eyes and tilt head slightly." },
+        { label: 'Puff', val: emotions.puff, color: '#d97706', icon: <Wind />, instruction: "Puff out your cheeks like a blowfish!" },
         { label: 'Kiss', val: emotions.kiss, color: '#f43f5e', icon: <Heart />, instruction: "Pucker your lips forward!" },
     ];
 
