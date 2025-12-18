@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg-color: #020617;
+  --text-color: #f8fafc;
+  --primary-color: #22d3ee;
+  /* Cyan */
+  --secondary-color: #a855f7;
+  /* Purple */
+  --accent-color: #f43f5e;
+  /* Rose */
+  --surface-color: rgba(15, 23, 42, 0.8);
+  --border-color: rgba(34, 211, 238, 0.2);
+
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-color);
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+}
+
+/* Scanline Effect */
+body::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 100;
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+}
+
+/* CRT Flicker */
+@keyframes flicker {
+  0% {
+    opacity: 0.97;
+  }
+
+  5% {
+    opacity: 0.95;
+  }
+
+  10% {
+    opacity: 0.9;
+  }
+
+  15% {
+    opacity: 0.95;
+  }
+
+  20% {
+    opacity: 0.98;
+  }
+
+  25% {
+    opacity: 0.95;
+  }
+
+  30% {
+    opacity: 0.9;
+  }
+
+  35% {
+    opacity: 0.95;
+  }
+
+  40% {
+    opacity: 0.98;
+  }
+
+  45% {
+    opacity: 0.95;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+
+  55% {
+    opacity: 0.95;
+  }
+
+  60% {
+    opacity: 0.98;
+  }
+
+  65% {
+    opacity: 0.95;
+  }
+
+  70% {
+    opacity: 0.9;
+  }
+
+  75% {
+    opacity: 0.95;
+  }
+
+  80% {
+    opacity: 0.98;
+  }
+
+  85% {
+    opacity: 0.95;
+  }
+
+  90% {
+    opacity: 0.9;
+  }
+
+  95% {
+    opacity: 0.95;
+  }
+
+  100% {
+    opacity: 0.98;
+  }
+}
+
+.crt-flicker {
+  animation: flicker 0.15s infinite;
+}
+
+/* Glass Panel */
+.glass-panel {
+  background: var(--surface-color);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(34, 211, 238, 0.1);
+}
+
+/* Animations */
+@keyframes scan {
+  0% {
+    top: 0%;
+  }
+
+  100% {
+    top: 100%;
+  }
+}
+
+.scanning-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+  box-shadow: 0 0 15px var(--primary-color);
+  z-index: 5;
+  animation: scan 4s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.rotate-slow {
+  animation: rotate 20s linear infinite;
+}
+
+.rotate-fast {
+  animation: rotate 5s linear infinite reverse;
+}
+
+/* Typography */
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Glitch Effect */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #ff00c1;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+  animation: glitch-anim2 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% {
+    clip: rect(31px, 9999px, 94px, 0);
+    transform: skew(0.85deg);
+  }
+
+  5% {
+    clip: rect(70px, 9999px, 71px, 0);
+    transform: skew(0.05deg);
+  }
+
+  10% {
+    clip: rect(10px, 9999px, 10px, 0);
+    transform: skew(0.45deg);
+  }
+
+  /* ... more steps ... */
+  100% {
+    clip: rect(67px, 9999px, 62px, 0);
+    transform: skew(0.15deg);
+  }
+}
+
+@keyframes glitch-anim2 {
+  0% {
+    clip: rect(65px, 9999px, 100px, 0);
+    transform: skew(0.15deg);
+  }
+
+  5% {
+    clip: rect(52px, 9999px, 74px, 0);
+    transform: skew(0.55deg);
+  }
+
+  /* ... more steps ... */
+  100% {
+    clip: rect(10px, 9999px, 50px, 0);
+    transform: skew(0.35deg);
+  }
+}
+
+/* Utilities */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

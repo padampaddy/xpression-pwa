@@ -1,0 +1,154 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.mainEmotion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.emoji {
+    font-size: 3.75rem;
+    /* 6xl */
+    filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+    margin-bottom: 0.5rem;
+    animation: bounce-short 1s infinite;
+}
+
+.label {
+    font-size: 2.25rem;
+    /* 4xl */
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    color: white;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+}
+
+.metricsStrip {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(24px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    padding-bottom: 2rem;
+}
+
+.metricsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0 0.5rem;
+    justify-items: center;
+}
+
+/* Circular Progress Component Styles */
+.circularProgress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 60px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.circularProgress:active {
+    transform: scale(0.95);
+}
+
+.circleContainer {
+    position: relative;
+    width: 3.5rem;
+    /* 14 * 0.25rem */
+    height: 3.5rem;
+}
+
+.svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.track {
+    color: rgba(255, 255, 255, 0.1);
+}
+
+.indicator {
+    transition: stroke-dashoffset 0.3s ease-out;
+}
+
+.iconContainer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.progressLabel {
+    font-size: 9px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+@keyframes bounce-short {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10%);
+    }
+}
+
+.instructionContainer {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    pointer-events: none;
+    padding-bottom: 2rem;
+}
+
+.instructionText {
+    font-size: 0.875rem;
+    color: #22d3ee;
+    /* cyan-400 */
+    font-family: 'JetBrains Mono', monospace;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

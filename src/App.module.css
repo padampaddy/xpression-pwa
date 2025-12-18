@@ -1,0 +1,92 @@
+.appContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #0f172a;
+    /* slate-900 */
+    color: #f1f5f9;
+    /* slate-100 */
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 1rem;
+    margin-bottom: 0;
+    z-index: 10;
+
+    /* Glass Panel Styles */
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(34, 211, 238, 0.1);
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.icon {
+    color: #22d3ee;
+    /* cyan-400 */
+}
+
+.title {
+    font-size: 1.25rem;
+    /* xl */
+    font-weight: 700;
+    /* bold */
+    letter-spacing: 0.05em;
+    /* wider */
+    background: linear-gradient(to right, #22d3ee, #a855f7);
+    /* cyan-400 to purple-500 */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.statusDot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background-color: #22c55e;
+    /* green-500 */
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.statusText {
+    font-size: 0.75rem;
+    /* xs */
+    font-family: 'JetBrains Mono', monospace;
+    color: #94a3b8;
+    /* slate-400 */
+}
+
+.main {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .5;
+    }
+}
